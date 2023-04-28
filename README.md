@@ -7,8 +7,12 @@
 Для успешного запуска проектной работы необходимо выполнить ряд пунктов!
 
 1.  Необходимо предванительно установить Linux CentOS 7
-    sudo yum install docker    установить docker
-    systemctl enable --now docker   запуск сервиса docker
-    reboot   перезапуск сервера.
+    sudo yum install docker    #установить docker
+    systemctl enable --now docker   #запуск сервиса docker
+    reboot   #перезапуск сервера.
 
-2.  
+2.  mkdir proj; cd proj;  #Создайте каталог и войдите в енего
+
+    git pull https://github.com/hexade88/myproj.git  # Скачайте репозиторий из сервиса github
+
+3.  #Войдите в папку nginx и выполните команду 
