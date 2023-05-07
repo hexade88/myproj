@@ -1,4 +1,3 @@
-FROM httpd:latest
-COPY ./httpd-vhosts.conf /usr/local/apache2/conf/extra/httpd-vhosts.conf
-COPY ./index1.html /usr/local/apache2/docs/site1/index.html
-COPY ./index2.html /usr/local/apache2/docs/site2/index.html
+FROM httpd:2.4.57
+COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./index1.html /usr/local/apache2/htdocs/index.html
