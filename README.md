@@ -24,4 +24,4 @@
      docker run -d -v logs:/var/log --name nginx -p 80:80 nginx_obj               #Запуск контейнера
 
 5.   docker build -t httpd_obj ./httpd                                     #Создание образа apach
-     docker run -d -v logs:/var/log --name httpd -p 8080:8080 httpd_obj           #Запускаем контейнер
+     docker run -d --name httpd -p 8080:8080 httpd_obj           #Запускаем контейнер
