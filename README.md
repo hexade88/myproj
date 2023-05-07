@@ -20,10 +20,8 @@
 
 3.   #Далее выполняем комманды создания образов и запуск контейнеров
 
-4.   cd ./myproj/nginx                              #Заходим в каталог nginx 
-     docker build -t nginx_obj .                    #Создание образа nginx
+4.   docker build -t nginx_obj ./myproj/nginx       #Создание образа nginx
      docker run -d --name nginx -p 80:80 nginx_obj  #Запуск контейнера
 
-5.   cd /root/proj/myproj/httpd/                    #Заходим в каталог Apache
-     docker build -t httpd_obj .
-     docker run -d --name httpd -p 8080:80 -p 8081:81 httpd_obj
+5.   docker build -t httpd_obj ./myproj/httpd                    #Создание образа apach
+     docker run -d --name httpd -p 8080:8080 httpd_obj           #Запускаем контейнер
