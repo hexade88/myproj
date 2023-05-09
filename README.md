@@ -27,4 +27,4 @@
      docker run -d --name httpd -p 8080:8080 httpd_obj                     #Запускаем контейнер
 
 6.   docker build -t master_obj ./master
-     docker run --name mysql-master -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
+     docker run --name mysql-master -e MYSQL_ROOT_PASSWORD=superuser -d master_obj
