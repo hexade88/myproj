@@ -1,0 +1,1 @@
+$MYSQL -e "show master status;";
