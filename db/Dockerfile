@@ -1,3 +1,2 @@
 FROM mysql:8.0
-COPY ./script.sh /script.sh
-CMD [ "bash", "/script.sh" ]
+COPY ./script.sh /docker-entrypoint-initdb.d/script.sh
