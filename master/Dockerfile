@@ -1,4 +1,4 @@
 FROM mysql:8.0
 COPY ./script.sh /script.sh
 RUN chmod a+rwx ./script.sh
-CMD ["bash /script.sh"]
+CMD bash /script.sh
