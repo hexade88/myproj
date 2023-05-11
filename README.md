@@ -17,6 +17,9 @@
     reboot                          #перезапуск сервера.
 
 2.  git clone https://github.com/hexade88/myproj.git  #Клонировать репозиторий из сервиса github
+     
+     2.1 #Устанавлиывем слиента mysql
+          yum install mysql
 
 3.   #Далее выполняем комманды создания образов и запуск контейнеров
 
@@ -26,5 +29,9 @@
 5.   docker build -t httpd_obj ./httpd                                     #Создание образа apach
      docker run -d --name httpd -p 8080:8080 httpd_obj                     #Запускаем контейнер
 
-6.   docker build -t master_obj ./master
-     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d master_obj 
+6.   # запускаем 2 экземпляра mysql
+     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
+
+     docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
+
+     bash ./db/script.sql
