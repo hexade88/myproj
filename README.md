@@ -24,8 +24,8 @@
 
 3.   #Далее выполняем комманды создания образов и запуск контейнеров   
      # запускаем 2 экземпляра mysql
-     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:5.7
-     docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:5.7
+     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
+     docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
 
 4.   docker build -t nginx_obj ./nginx                                            #Создание образа nginx
      docker run -d -v logs:/var/log --name nginx -p 80:80 nginx_obj               #Запуск контейнера
