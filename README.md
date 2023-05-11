@@ -3,6 +3,7 @@
 
 Проект разбит на микросервисы в контейнерах docker, каждая папка это отдельный образ контейнера
 с файлами конфигураций, который вы можете настроить при необходимости, либо оставьте настройки по дефолту.
+Настоятельно рекомендую изменить пароли к серверам mysql
 
 Для успешного запуска проектной работы необходимо выполнить ряд пунктов!
 
@@ -18,10 +19,13 @@
 
 2.  git clone https://github.com/hexade88/myproj.git  #Клонировать репозиторий из сервиса github
      
-     2.1 #Устанавлиывем слиента mysql
+     2.1 # Устанавливаем клиента mysql
           yum install mysql
 
-3.   #Далее выполняем комманды создания образов и запуск контейнеров
+3.   #Далее выполняем комманды создания образов и запуск контейнеров   
+     # запускаем 2 экземпляра mysql
+     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:5.7
+     docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:5.7
 
 4.   docker build -t nginx_obj ./nginx                                            #Создание образа nginx
      docker run -d -v logs:/var/log --name nginx -p 80:80 nginx_obj               #Запуск контейнера
@@ -29,9 +33,6 @@
 5.   docker build -t httpd_obj ./httpd                                     #Создание образа apach
      docker run -d --name httpd -p 8080:8080 httpd_obj                     #Запускаем контейнер
 
-6.   # запускаем 2 экземпляра mysql
-     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
 
-     docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
 
-     bash ./db/script.sql
+     bash ./db/repl.sql
