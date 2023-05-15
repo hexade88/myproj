@@ -8,8 +8,8 @@ read binlog position <<< $rezult
 echo $binlog
 echo $position
 
-$SLAVE='SET GLOBAL server_id=2;';
-$SLAVE='systemctl restart mysqld.service;';
+$SLAVE -e 'SET GLOBAL server_id=2;';
+$SLAVE -e 'systemctl restart mysqld.service;';
 
-$SLAVE="CHANGE MASTER TO MASTER_HOST='127.0.0.1', MASTER_PORT=3306, MASTER_USER='repl', MASTER_PASSWORD='superuser', MASTER_LOG_FILE='$binlog', MASTER_LOG_POS=$position, GET_MASTER_PUBLIC_KEY = 1;";
-$SLAVE='start slave;';
+$SLAVE -e "CHANGE MASTER TO MASTER_HOST='127.0.0.1', MASTER_PORT=3306, MASTER_USER='repl', MASTER_PASSWORD='superuser', MASTER_LOG_FILE='$binlog', MASTER_LOG_POS=$position, GET_MASTER_PUBLIC_KEY = 1;";
+$SLAVE -e 'start slave;';
