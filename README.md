@@ -8,18 +8,28 @@
 Для успешного запуска проектной работы необходимо выполнить ряд пунктов!
 
 1.  Необходимо предванительно установить и настроить Linux CentOS 7
-    sudo yum install docker         #установить docker
-    systemctl enable --now docker   #запуск сервиса docker
-    yum install git                 #установите git    
-    systemctl stop firewalld        #Останавливаем файервол
-    systemctl disable firewalld     #Выключаем файервол
-    systemctl restart docker        #перезапускаем докер
-    setenforce 0                    #Отключаем selinux
-    reboot                          #перезапуск сервера.
+     #установить docker
+          sudo yum install docker
+     #запуск сервиса docker
+          systemctl enable --now docker
+     #установите git   
+          yum install git
+     #Останавливаем файервол
+          systemctl stop firewalld   
+     #Выключаем файервол
+          systemctl disable firewalld  
+     #перезапускаем докер
+          systemctl restart docker  
+     #Отключаем selinux
+          setenforce 0   
+     #перезапуск сервера.
+          reboot                          
 
 2.  git clone https://github.com/hexade88/myproj.git  #Клонировать репозиторий из сервиса github
      
-     2.1 # Устанавливаем клиента mysql
+     2.1 # Установка репозитория Oracle MySQL 8.0
+          rpm -Uvh https://repo.mysql.com/mysql80-community-release-el7-7.noarch.rpm
+     2.2 # Устанавливаем клиента mysql
           yum install mysql
 
 3.   #Далее выполняем комманды создания образов и запуск контейнеров   
@@ -34,5 +44,5 @@
      docker run -d --name httpd -p 8080:8080 httpd_obj                     #Запускаем контейнер
 
 
-
+     chmod a+rwx ./db/repl.sh
      bash ./db/repl.sql

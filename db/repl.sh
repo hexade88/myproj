@@ -1,4 +1,5 @@
 MYSQL='mysql -uroot -psuperuser -h127.0.0.1 -P3306'
+SLAVE='mysql -uroot -psuperuser -h127.0.0.1 -P3308'
 $MYSQL -e "CREATE USER repl@'%' IDENTIFIED WITH 'caching_sha2_password' BY 'superuser';";
 $MYSQL -e "GRANT REPLICATION SLAVE ON *.* TO repl@'%';";
 
@@ -7,4 +8,8 @@ read binlog position <<< $rezult
 echo $binlog
 echo $position
 
-$MYSQL -e "SELECT @@server_id;";
+$SLAVE='SET GLOBAL server_id=2;';
+$SLAVE='systemctl restart mysqld.service;';
+
+$SLAVE="CHANGE MASTER TO MASTER_HOST='127.0.0.1', MASTER_PORT=3306, MASTER_USER='repl', MASTER_PASSWORD='superuser', MASTER_LOG_FILE='$binlog', MASTER_LOG_POS=$position, GET_MASTER_PUBLIC_KEY = 1;";
+$SLAVE='start slave;';
