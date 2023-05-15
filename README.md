@@ -51,3 +51,6 @@
      #Запуск скрипта рерликации             
      chmod a+rwx ./db/repl.sh
      bash ./db/repl.sh
+
+     
+     cp ./backup.sh /etc/cron.daily/backup.sh
