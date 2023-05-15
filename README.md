@@ -38,9 +38,6 @@
      docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d slave_obj
      docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
 
-     #Запустить после старта mysql-slave
-     bash ./db/script.sql
-
 4.   #Создание образа nginx   
           docker build -t nginx_obj ./nginx    
      #Запуск контейнера                                        
