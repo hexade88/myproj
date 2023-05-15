@@ -34,15 +34,22 @@
 
 3.   #Далее выполняем комманды создания образов и запуск контейнеров   
      # запускаем 2 экземпляра mysql
-     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
      docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
+     docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
 
-4.   docker build -t nginx_obj ./nginx                                            #Создание образа nginx
-     docker run -d -v logs:/var/log --name nginx -p 80:80 nginx_obj               #Запуск контейнера
+     #Запустить после старта mysql-slave
+     bash ./db/script.sql
 
-5.   docker build -t httpd_obj ./httpd                                     #Создание образа apach
-     docker run -d --name httpd -p 8080:8080 httpd_obj                     #Запускаем контейнер
+4.   #Создание образа nginx   
+          docker build -t nginx_obj ./nginx    
+     #Запуск контейнера                                        
+          docker run -d -v logs:/var/log --name nginx -p 80:80 nginx_obj               
 
+5.   #Создание образа apach
+          docker build -t httpd_obj ./httpd                                     
+     #Запускаем контейнер
+          docker run -d --name httpd -p 8080:8080 httpd_obj        
 
+     #Запуск скрипта рерликации             
      chmod a+rwx ./db/repl.sh
      bash ./db/repl.sql
