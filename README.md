@@ -50,4 +50,4 @@
 
      #Запуск скрипта рерликации             
      chmod a+rwx ./db/repl.sh
-     bash ./db/repl.sql
+     bash ./db/repl.sh
