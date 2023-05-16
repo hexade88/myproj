@@ -1,2 +1,2 @@
-FROM httpd:2.4.57
+FROM php:7.2-apache
 COPY ./wordpress/ /var/www/html/
