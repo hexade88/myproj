@@ -5,6 +5,8 @@ SLAVE='mysql -uroot -psuperuser -h127.0.0.1 -P3308'
 $MYSQL -e "CREATE USER repl@'%' IDENTIFIED WITH 'caching_sha2_password' BY 'superuser';";
 $MYSQL -e "GRANT REPLICATION SLAVE ON *.* TO repl@'%';";
 
+$MYSQL -e "select user, host, plugin from mysql.user;";
+
 rezult=$($MYSQL -N -e "SHOW MASTER STATUS;";)
 read binlog position <<< $rezult
 echo $binlog
