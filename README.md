@@ -63,6 +63,6 @@
 
      #Запускаем билд образа и старт контейнера
      docker build -t elk_obj ./ELK 
-     docker run -d --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 -p 5400:5400 httpd_obj
+     docker run -d --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 elk_obj
 
      
