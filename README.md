@@ -65,4 +65,6 @@
      docker build -t elk_obj ./ELK 
      docker run -d --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 elk_obj
 
+     docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -d --name elk sebp/elk
+
      
