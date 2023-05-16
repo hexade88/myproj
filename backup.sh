@@ -2,7 +2,11 @@
 
 # --master-data заменил на --source-data запись бинлога в файле присутствует
 
-MYSQL='mysql -uroot -poracle_4U'
+if [ -d "$HOME/backup/" ]; then
+  rm -rf $HOME/backup/*
+fi
+
+MYSQL='mysql -uroot -psuperuser -h172.17.0.1 -P3308'
 
 $MYSQL -e "STOP SLAVE;";
 echo $?;    #проверка для себя
