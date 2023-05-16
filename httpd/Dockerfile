@@ -1,2 +1,3 @@
-FROM php:7.2-apache
-COPY ./wordpress/ /var/www/html/
+FROM httpd:2.4.57
+COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./index1.html /usr/local/apache2/htdocs/index.html
