@@ -52,5 +52,7 @@
      chmod a+rwx ./db/repl.sh
      bash ./db/repl.sh
 
-     
+     #Устанавливаем звпуск backup посуточно
      cp ./backup.sh /etc/cron.daily/backup.sh
+
+     
