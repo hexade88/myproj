@@ -52,7 +52,17 @@
      chmod a+rwx ./db/repl.sh
      bash ./db/repl.sh
 
-     #Устанавливаем звпуск backup посуточно
+     #Устанавливаем запуск backup посуточно
      cp ./backup.sh /etc/cron.daily/backup.sh
+
+6.   #Необходимо предварительно перенести rpm пакеты в каталог ELK нашего проекта
+     elasticsearch_7.17.3_x86_64-224190-9bcb26.rpm
+     filebeat_7.17.3_x86_64-224190-4c3205.rpm
+     kibana_7.17.3_x86_64-224190-b13e53.rpm
+     logstash_7.17.3_x86_64-224190-3a605f.rpm
+
+     #Запускаем билд образа и старт контейнера
+     docker build -t elk_obj ./ELK 
+     docker run -d --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 -p 5400:5400 httpd_obj
 
      
