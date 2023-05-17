@@ -3,7 +3,7 @@
 
 Проект разбит на микросервисы в контейнерах docker, каждая папка это отдельный образ контейнера
 с файлами конфигураций, который вы можете настроить при необходимости, либо оставьте настройки по дефолту.
-Настоятельно рекомендую изменить пароли к серверам mysql
+
 
 Для успешного запуска проектной работы необходимо выполнить ряд пунктов!
 
@@ -26,6 +26,9 @@
           reboot                          
 
 2.  git clone https://github.com/hexade88/myproj.git  #Клонировать репозиторий из сервиса github
+
+     На данном этапе
+     Настоятельно рекомендую, в конфиг файлах проекта, изменить пароли к серверам и сервисам
      
      2.1 # Установка репозитория Oracle MySQL 8.0
           rpm -Uvh https://repo.mysql.com/mysql80-community-release-el7-7.noarch.rpm
@@ -40,10 +43,7 @@
 
 4.   #Создание образа nginx   
           docker build -t nginx_obj ./nginx    
-     #Запуск контейнера                                        
-          mkdir /var/log/nginx/
-          touch /var/log/nginx/error.log
-          chmod a+rwx /var/log/nginx/error.log
+     #Запуск контейнера
           docker run -d --name nginx -p 80:80 -v /var/log/nginx:/var/log/nginx nginx_obj               
 
 5.   #Создание образа apach
@@ -77,3 +77,18 @@
      sudo systemctl enable --now kibana
 
      cp logstash.yml /etc/logstash/logstash.yml
+     cp logstash-nginx-es.conf /etc/logstash/conf.d/logstash-nginx-es.conf
+     systemctl restart logstash.service
+
+     cp filebeat.yml /etc/filebeat/filebeat.yml
+     systemctl enable filebeat
+     systemctl restart filebeat
+
+     Создаём графики на Elastic
+     http://localhost:5601
+
+8.   Grafana + Prometheus + node_exporter
+     
+     bash ./prometheus/ps.sh 
+     
+     docker run -d --name prometheus -p 9090:9090 -v /prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
