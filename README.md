@@ -91,4 +91,5 @@
      
      bash ./prometheus/ps.sh 
      
-     docker run -d --name prometheus -p 9090:9090 -v /prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+     docker build -t prometheus_obj ./prometheus
+     docker run -d --name prometheus -p 9090:9090 prometheus_obj
