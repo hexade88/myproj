@@ -99,6 +99,8 @@
      systemctl daemon-reload;
      systemctl enable --now node_exporter.service;
      
-     
+
      docker build -t prometheus_obj ./prometheus
      docker run -d --name prometheus -p 9090:9090 prometheus_obj
+
+     docker run -d --name=grafana -p 3000:3000 grafana/grafana
