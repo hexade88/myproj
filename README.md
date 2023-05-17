@@ -51,8 +51,8 @@
      #Запускаем контейнер
           docker run -d --name httpd -p 8080:8080 httpd_obj        
 
-     #Запуск скрипта рерликации             
-     chmod a+rwx ./db/repl.sh
+     #Запуск скрипта репликации             
+     
      bash ./db/repl.sh
 
      #Устанавливаем запуск backup посуточно
@@ -104,3 +104,5 @@
      docker run -d --name prometheus -p 9090:9090 prometheus_obj
 
      docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+     Дашборд 1860, 11074
