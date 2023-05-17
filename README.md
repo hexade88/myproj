@@ -61,10 +61,14 @@
      kibana_7.17.3_x86_64-224190-b13e53.rpm
      logstash_7.17.3_x86_64-224190-3a605f.rpm
 
-     #Запускаем билд образа и старт контейнера
-     docker build -t elk_obj ./ELK 
-     docker run -d --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 elk_obj
+7.   ELK установка     
+     
+     Создаём образ
+     docker build -t elk_obj ./ELK
 
-     docker run -d --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 centos:centos7
+     Запускаем контейнер и проваливаемся в его консоль
+     docker run -ti --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 elk_obj
 
+     
+     yum -y install java-openjdk-devel java-openjdk
      
