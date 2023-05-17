@@ -8,21 +8,21 @@
 Для успешного запуска проектной работы необходимо выполнить ряд пунктов!
 
 1.  Необходимо предванительно установить и настроить Linux CentOS 7
-     #установить docker
+     1.1 установить docker
           sudo yum install docker
-     #запуск сервиса docker
+     1.2 запуск сервиса docker
           systemctl enable --now docker
-     #установите git   
+     1.3 установите git   
           yum install git
-     #Останавливаем файервол
+     1.4 Останавливаем файервол
           systemctl stop firewalld   
-     #Выключаем файервол
+     1.5 Выключаем файервол
           systemctl disable firewalld  
-     #перезапускаем докер
+     1.6 перезапускаем докер
           systemctl restart docker  
-     #Отключаем selinux
+     1.7 Отключаем selinux
           setenforce 0   
-     #перезапуск сервера.
+     1.8 перезапуск сервера.
           reboot                          
 
 2.  git clone https://github.com/hexade88/myproj.git  #Клонировать репозиторий из сервиса github
@@ -30,35 +30,35 @@
      На данном этапе
      Настоятельно рекомендую, в конфиг файлах проекта, изменить пароли к серверам и сервисам
      
-     2.1 # Установка репозитория Oracle MySQL 8.0
+     2.1 Установка репозитория Oracle MySQL 8.0
           rpm -Uvh https://repo.mysql.com/mysql80-community-release-el7-7.noarch.rpm
-     2.2 # Устанавливаем клиента mysql
+     2.2 Устанавливаем клиента mysql
           yum install mysql
 
-3.   #Далее выполняем комманды создания образов и запуск контейнеров   
-     # запускаем 2 экземпляра mysql
+3.   Далее выполняем комманды создания образов и запуск контейнеров   
+     запускаем 2 экземпляра mysql
      docker build -t slave_obj ./db
      docker run --name mysql-slave -p 3308:3306 -e MYSQL_ROOT_PASSWORD=superuser -d slave_obj
      docker run --name mysql-master -p 3306:3306 -e MYSQL_ROOT_PASSWORD=superuser -d mysql:8.0
 
-4.   #Создание образа nginx   
+4.   Создание образа nginx   
           docker build -t nginx_obj ./nginx    
-     #Запуск контейнера
+     Запуск контейнера
           docker run -d --name nginx -p 80:80 -v /var/log/nginx:/var/log/nginx nginx_obj               
 
-5.   #Создание образа apach
+5.   Создание образа apach
           docker build -t httpd_obj ./httpd                                     
-     #Запускаем контейнер
+     Запускаем контейнер
           docker run -d --name httpd -p 8080:8080 httpd_obj        
 
-     #Запуск скрипта репликации             
+     Запуск скрипта репликации             
      
      bash ./db/repl.sh
 
-     #Устанавливаем запуск backup посуточно
+     Устанавливаем запуск backup посуточно
      cp ./backup.sh /etc/cron.daily/backup.sh
 
-6.   #Необходимо предварительно перенести rpm пакеты в каталог ELK нашего проекта
+6.   Необходимо предварительно перенести rpm пакеты в каталог ELK нашего проекта
      elasticsearch_7.17.3_x86_64-224190-9bcb26.rpm
      filebeat_7.17.3_x86_64-224190-4c3205.rpm
      kibana_7.17.3_x86_64-224190-b13e53.rpm
