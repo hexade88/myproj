@@ -41,7 +41,10 @@
 4.   #Создание образа nginx   
           docker build -t nginx_obj ./nginx    
      #Запуск контейнера                                        
-          docker run -d -v logs:/var/log --name nginx -p 80:80 nginx_obj               
+          mkdir /var/log/nginx/
+          touch /var/log/nginx/error.log
+          chmod a+rwx /var/log/nginx/error.log
+          docker run -d --name nginx -p 80:80 -v /var/log/nginx:/var/log/nginx nginx_obj               
 
 5.   #Создание образа apach
           docker build -t httpd_obj ./httpd                                     
@@ -62,13 +65,15 @@
      logstash_7.17.3_x86_64-224190-3a605f.rpm
 
 7.   ELK установка     
-     
-     Создаём образ
-     docker build -t elk_obj ./ELK
-
-     Запускаем контейнер и проваливаемся в его консоль
-     docker run -ti --name elk -p 9200:9200 -p 5400:5400 -p 5601:5601 elk_obj
-
-     
+     переходим в каталог ELK
      yum -y install java-openjdk-devel java-openjdk
+     rpm -i *.rpm
      
+     cp jvm.options /etc/elasticsearch/jvm.options.d/jvm.options
+
+     systemctl enable --now elasticsearch.service
+
+     cp kibana.yml /etc/kibana/kibana.yml
+     sudo systemctl enable --now kibana
+
+     cp logstash.yml /etc/logstash/logstash.yml
