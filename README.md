@@ -8,22 +8,22 @@
 Для успешного запуска проектной работы необходимо выполнить ряд пунктов!
 
 1.  Необходимо предванительно установить и настроить Linux CentOS 7
-     1.1 установить docker
-          sudo yum install docker
-     1.2 запуск сервиса docker
-          systemctl enable --now docker
-     1.3 установите git   
-          yum install git
-     1.4 Останавливаем файервол
-          systemctl stop firewalld   
-     1.5 Выключаем файервол
-          systemctl disable firewalld  
-     1.6 перезапускаем докер
-          systemctl restart docker  
-     1.7 Отключаем selinux
-          setenforce 0   
-     1.8 перезапуск сервера.
-          reboot                          
+     установить docker
+     sudo yum install docker
+     запуск сервиса docker
+     systemctl enable --now docker
+     установите git   
+     yum install git
+     Останавливаем файервол
+     systemctl stop firewalld   
+     Выключаем файервол
+     systemctl disable firewalld  
+     перезапускаем докер
+     systemctl restart docker  
+     Отключаем selinux
+     setenforce 0   
+     перезапуск сервера.
+     reboot                          
 
 2.  git clone https://github.com/hexade88/myproj.git  #Клонировать репозиторий из сервиса github
 
